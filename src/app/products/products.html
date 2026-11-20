@@ -1,1 +1,37 @@
-<p>products works!</p>
+<h3>Products</h3>
+<table class="table table-hover align-middle">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Available</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (p of products(); track p.id) {
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+          @if (p.available) {
+            <i class="bi bi-check-circle text-success"></i>
+          } @else {
+            <i class="bi bi-x-circle text-secondary"></i>
+          }
+        </td>
+        <td>
+          <button class="btn btn-sm btn-outline-danger" (click)="onDelete(p)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="5" class="text-center text-secondary">No products left</td>
+      </tr>
+    }
+  </tbody>
+</table>
